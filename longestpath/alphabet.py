@@ -12,6 +12,8 @@ for eg a->b(right)->c(down)->d(diagnal down) len = 4 , find max such len
 
 http://www.careercup.com/question?id=5727802043138048
 
+Time/space complexity: O(n^2)
+
 """
 
 
@@ -22,11 +24,13 @@ class LettersMatrix:
         self.length = len(matrix[0])
         self.matrix = matrix
         
+        self.startingnodes = []
         self.graph = {}
         
         for i in range(0, self.height):
             for j in range(0, self.length):
                 if self.matrix[i][j] == 'a':
+                    self.startingnodes.append((i,j))
                     self.explore((i,j))
                 
                 
@@ -62,5 +66,20 @@ class LettersMatrix:
         for successor in successors:
             self.explore(successor)
             
-            
+    
+    def longest_graph_path(self):
+        return self.max_path_length(self.startingnodes)
+    
+    def max_path_length(self,nodelist):
+        path_lengths = []
+        for node in nodelist:
+            successors = self.graph[node]
+            if successors == []:
+                path_lengths.append(1)
+            else:
+                path_lengths.append(1 + self.max_path_length(successors))
+        return max(path_lengths)
+                
+                
+
         

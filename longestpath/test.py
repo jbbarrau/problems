@@ -9,4 +9,6 @@ matrix = [\
     
 matrix = LettersMatrix(matrix)
 
-print matrix.graph
+#print matrix.graph
+
+print matrix.longest_graph_path()
