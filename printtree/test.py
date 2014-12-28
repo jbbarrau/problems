@@ -21,4 +21,5 @@ graph = {\
             'q': [],\
             'r': [],\
 }          
-testtree = Tree(graph,'a')
+
+print Tree(graph,'a')
